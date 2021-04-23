@@ -33,16 +33,41 @@ var game = new Phaser.Game(config);
 
 function preload() {
   this.load.image('sky', 'assets/sky.png');
-  this.load.image('ground', 'assets/platform.png');
+  this.load.image('ground', 'assets/platform3.png');
   this.load.image('star', 'assets/logo_pix.png', {
     height: 30,
     width: 30,
   });
   this.load.image('bomb', 'assets/bomb.png');
-  this.load.spritesheet('dude', 'assets/dude.png', {
+  this.load.spritesheet('dude', 'assets/dude_2.png', {
     frameWidth: 32,
     frameHeight: 48,
   });
+
+  this.load.audio('audio_beam', [
+    'assets/sounds/beam.ogg',
+    'assets/sounds/beam.mp3',
+  ]);
+
+  this.load.audio('audio_explosion', [
+    'assets/sounds/explosion.ogg',
+    'assets/sounds/explosion.mp3',
+  ]);
+
+  this.load.audio('audio_pickup', [
+    'assets/sounds/pickup.ogg',
+    'assets/sounds/pickup.mp3',
+  ]);
+
+  this.load.audio('game_over', [
+    'assets/sounds/gameover.ogg',
+    'assets/sounds/gameover.mp3',
+  ]);
+
+  this.load.audio('music', [
+    'assets/sounds/bgscore.ogg',
+    'assets/sounds/bgscore.mp3',
+  ]);
 }
 
 function create() {
@@ -67,6 +92,26 @@ function create() {
   //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
+
+  // 1.2 create the sounds to be used
+  this.beamSound = this.sound.add('audio_beam');
+  this.explosionSound = this.sound.add('audio_explosion');
+  this.pickupSound = this.sound.add('audio_pickup');
+  this.gameOver = this.sound.add('game_over');
+  // 2.1 create music
+  this.music = this.sound.add('music');
+
+  var musicConfig = {
+    mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0,
+  };
+
+  this.music.play(musicConfig);
 
   //  Our player animations, turning, walking left and walking right.
   this.anims.create({
@@ -149,6 +194,7 @@ function update() {
 }
 
 function collectStar(player, star) {
+  this.pickupSound.play();
   star.disableBody(true, true);
 
   //  Add and update the score
@@ -177,7 +223,9 @@ function collectStar(player, star) {
 
 function hitBomb(player, bomb) {
   this.physics.pause();
-
+  this.music.pause();
+  this.explosionSound.play();
+  this.gameOver.play();
   // player.setTint(0xff0000);
 
   player.anims.play('turn');

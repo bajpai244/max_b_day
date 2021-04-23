@@ -1,9 +1,16 @@
 /** @format */
 
-html {
+body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   background-color: black;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  color: white;
+  text-align: center;
 }

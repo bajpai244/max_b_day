@@ -34,6 +34,7 @@ var game = new Phaser.Game(config);
 function preload() {
   this.load.image('sky', 'assets/sky.png');
   this.load.image('ground', 'assets/platform3.png');
+  this.load.image('main_platform', 'assets/main_platform.png');
   this.load.image('star', 'assets/logo_pix.png', {
     height: 30,
     width: 30,
@@ -79,7 +80,7 @@ function create() {
 
   //  Here we create the ground.
   //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-  platforms.create(400, 568, 'ground').setScale(2).refreshBody();
+  platforms.create(400, 568, 'main_platform').setScale(2).refreshBody();
 
   //  Now let's create some ledges
   platforms.create(600, 400, 'ground');

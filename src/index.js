@@ -40,9 +40,9 @@ function preload() {
     width: 30,
   });
   this.load.image('bomb', 'assets/bomb.png');
-  this.load.spritesheet('dude', 'assets/dude_2.png', {
-    frameWidth: 32,
-    frameHeight: 48,
+  this.load.spritesheet('dude', 'assets/dude_4.png', {
+    frameWidth: 35,
+    frameHeight: 50,
   });
 
   this.load.audio('audio_beam', [
@@ -66,8 +66,8 @@ function preload() {
   ]);
 
   this.load.audio('music', [
-    'assets/sounds/bgscore.ogg',
-    'assets/sounds/bgscore.mp3',
+    'assets/sounds/bgscore3.ogg',
+    'assets/sounds/bgscore3.mp3',
   ]);
 }
 

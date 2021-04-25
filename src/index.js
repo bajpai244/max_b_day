@@ -104,7 +104,7 @@ function create() {
 
   var musicConfig = {
     mute: false,
-    volume: 1,
+    volume: 0.8,
     rate: 1,
     detune: 0,
     seek: 0,
@@ -154,7 +154,7 @@ function create() {
   bombs = this.physics.add.group();
 
   //  The score
-  scoreText = this.add.text(16, 16, 'score: 0', {
+  scoreText = this.add.text(10, 10, 'score: 0', {
     fontSize: '32px',
     fill: 'white',
   });

@@ -21,7 +21,10 @@ const post_req = (score) => {
         redirect: 'follow',
       };
 
-      fetch('http://localhost:3000/update_score', requestOptions)
+      fetch(
+        'https://scorelogger.harshbajpai1.repl.co/update_score',
+        requestOptions
+      )
         .then((response) => response.text())
         .then((result) => console.log(result))
         .catch((error) => console.log('error', error));

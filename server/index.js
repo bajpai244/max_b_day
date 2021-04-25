@@ -68,7 +68,12 @@ exp_app.post('/update_score', (req, res) => {
       if (req.method === 'POST') {
         const score = req.body.score;
         res.send('got the score, it is' + score);
-        update_score(score);
+        update_score(score, () => {
+          client.chat.postMessage({
+            channel: 'bot_test',
+            text: 'hey!!!!!!!',
+          });
+        });
       } else {
         res.statusCode = 405;
         res.send(JSON.stringify({ message: 'method_not_allowed' }));

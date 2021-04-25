@@ -4,7 +4,7 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   background-color: black;
   align-items: center;
   flex-direction: column;

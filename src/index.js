@@ -229,6 +229,8 @@ function hitBomb(player, bomb) {
   this.gameOver.play();
   // player.setTint(0xff0000);
 
+  post_req(score);
+
   player.anims.play('turn');
 
   //gameOver = true;
@@ -249,6 +251,7 @@ function hitBomb(player, bomb) {
         fill: 'orange',
       }
     );
+    score = 0;
     const interval = setInterval(() => {
       if (time == 6) {
         clearInterval(interval);
